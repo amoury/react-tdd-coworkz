@@ -5,13 +5,29 @@ import CardList from './CardList';
 
 
 describe("CardList", () => {
-  const mountedCardList = mount(<CardList />);
+  let props = { spaces: []};
+  let mountedCardList; 
+
+  beforeEach(() => {
+    mountedCardList = mount(<CardList {...props} />)
+  })
+
 
   it("renders CardList correctly", () => {
-    shallow(<CardList />);
+    mountedCardList;
   });
 
-  it("renders a list of SpaceCards", () => {
-    expect(mountedCardList.find('SpaceCard').exists()).toBe(true);
-  });
+
+
+  describe('spaces contains one or more objects', () => {
+    beforeEach(() => {
+      props = { spaces: [{ id: "0001", name: "sample name" }] }
+      mountedCardList = mount(<CardList {...props} />);
+    });
+
+
+    it("renders a list of SpaceCards", () => {
+      expect(mountedCardList.find('SpaceCard').exists()).toBe(true);
+    });
+  })
 })

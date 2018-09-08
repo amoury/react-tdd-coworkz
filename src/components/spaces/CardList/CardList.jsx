@@ -1,6 +1,5 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 
 
 import SpaceCard from '../SpaceCard';
@@ -18,7 +17,7 @@ const styles = {
 };
 
 const CardList = (props) => {
-  const { classes, spaces } = props;
+  const { spaces } = props;
   if (spaces.length <= 0) return <div><Loader /></div>;
 
   const renderSpaceCards = spaces.map( space => (
@@ -26,7 +25,7 @@ const CardList = (props) => {
   ))
 
   return (
-    <div className={classes.root}>
+    <div style={styles.root}>
       { renderSpaceCards }
     </div>
   )
@@ -34,8 +33,8 @@ const CardList = (props) => {
 
 
 CardList.propTypes = {
-  classes: PropTypes.object.isRequired
+  spaces: PropTypes.array
 }
 
 
-export default withStyles(styles)(CardList)
+export default CardList;

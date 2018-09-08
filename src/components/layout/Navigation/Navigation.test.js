@@ -18,7 +18,6 @@ describe("Navigation", () => {
 
     it('changes the `switchon` state to true when clicked', () => {
       switchButton.simulate('change');
-      console.log(mountedNav.state());
       expect(switchButton.props().checked).toBe(false); //Come back to this (Problem caused due to withStyles(<Navigation/>))
     });
 

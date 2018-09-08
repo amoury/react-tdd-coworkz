@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
+import { PropTypes } from 'prop-types';
 
 import LocationMarker from "../LocationMarker";
 
@@ -12,18 +13,24 @@ class MegaMap extends Component {
     zoom: 11
   };
 
+  static propTypes = {
+    spaces: PropTypes.array
+  }
+
   render() {
 
     const { spaces } = this.props;
     
     const renderLocations = spaces.map( space => {
-      const { lat, lng } = space.geometry.location;
-      return <LocationMarker key={space.id} lat={lat} lng={lng} name={space.name} />;
+      if(space.geometry) {
+        const { lat, lng } = space.geometry.location;
+        return <LocationMarker key={space.id} lat={lat} lng={lng} name={space.name} />;
+      }
     })
 
   
     return (
-      <div style={{ height: "95%", width: "100%", marginTop: "20px" }}>
+      <div style={{ height: "100%", width: "100%", marginTop: "0"}}>
         <GoogleMapReact
           bootstrapURLKeys={{
             key: "AIzaSyBH8UsljlMRkbUNYkY1j4iOOem07wv9rbQ"
@@ -32,7 +39,7 @@ class MegaMap extends Component {
           defaultZoom={this.props.zoom}
         >
           { renderLocations }
-          {/* <LocationMarker lat={25.1555} lng={55.3235} /> */}
+          {/* <LocationMarker name="Ansar" lat={25.1555} lng={55.3235} /> */}
         </GoogleMapReact>
       </div>
     );

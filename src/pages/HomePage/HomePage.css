@@ -1,11 +1,10 @@
 .mega-map {
-  position: sticky;
-  border: 1px solid black;
+  position: fixed;
   width: 100%;
-  /* right: 0; */
-  height: 95vh;
+  right: 0;
+  height: 90vh;
   padding: 0;
-  top: 0;
+  bottom: 0;
 }
 
 .map-enter {

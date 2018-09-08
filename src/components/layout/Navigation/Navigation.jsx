@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
 import { Typography, Toolbar, Switch, IconButton, Tooltip, AppBar } from '@material-ui/core';
@@ -24,6 +25,10 @@ class Navigation extends Component {
     switchOn: false
   };
 
+  static propTypes = {
+    toggleMap: PropTypes.func
+  };
+
   handleSwitch = () => {
     this.setState({ switchOn: !this.state.switchOn });
     this.props.toggleMap();
@@ -31,9 +36,8 @@ class Navigation extends Component {
 
   render () {
     
-
     return (
-      <NavigationWrapper>
+      <NavigationWrapper style={{ position: 'sticky', top: "0", zIndex: '10' }}> 
         <AppBar position="static">
           <Toolbar>
             <IconButton style={menuButtonStyle} color="inherit" aria-label="Menu">
@@ -50,7 +54,6 @@ class Navigation extends Component {
           </Toolbar>
         </AppBar>
       </NavigationWrapper>
-      // </div>
     );
   }
 }

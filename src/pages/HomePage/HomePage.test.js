@@ -5,6 +5,8 @@ import axios from 'axios';
 
 const mountedHome = mount(<HomePage/>);
 
+let mockFn = jest.fn();
+
 describe("HomePage", () => {
   it('renders HomePage correctly', () => {
     shallow(<HomePage/>)

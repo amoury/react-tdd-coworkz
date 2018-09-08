@@ -41,11 +41,11 @@ const SpaceCard = props => {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            {space.name ? space.name : "Coworking Space"}
+            {space ? space.name : "Coworking Space"}
           </Typography>
           <Divider light />
           <Typography component="p">
-            {space.international_phone_number
+            {space
               ? space.international_phone_number
               : null}
           </Typography>
