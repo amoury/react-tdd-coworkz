@@ -19,10 +19,11 @@ describe("HomePage", () => {
       expect(mountedHome.find('Grid').length).toEqual(2);
     });
   
-    it('renders second column if state.showMap is true', () => {
+    it('renders MegaMap if state.showMap is true', () => {
       mountedHome.setState({ showMap: true });
-      expect(mountedHome.find('Grid').length).toEqual(3);
+      expect(mountedHome.find('MegaMap').exists()).toBe(true);
     });
+
   })
 
   describe('Cards', () => {

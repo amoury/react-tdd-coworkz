@@ -1,0 +1,31 @@
+.mega-map {
+  position: sticky;
+  border: 1px solid black;
+  width: 100%;
+  /* right: 0; */
+  height: 95vh;
+  padding: 0;
+  top: 0;
+}
+
+.map-enter {
+  opacity: 0.01;
+  transform: translateX(50%);
+}
+
+.map-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 300ms ease-out;
+}
+
+.map-exit {
+  opacity: 1;
+  /* transform: translateX(0%); */
+}
+
+.map-exit.map-exit-active {
+  opacity: 0.01;
+  transform: translateX(50%);
+  transition: all 300ms ease-out;
+}

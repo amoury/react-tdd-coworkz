@@ -10,17 +10,18 @@ import {
   CardMedia,
   Button,
   Typography,
-  IconButton
+  IconButton,
+  Divider
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const styles = {
   card: {
-    maxWidth: 300,
+    maxWidth: window.innerWidth / 5,
     marginTop: 20,
     marginRight: 10,
-    marginLeft: 10
-
+    marginLeft: 10,
+    transition: "all 0.3s ease-out"
   },
   media: {
     height: 140
@@ -28,7 +29,8 @@ const styles = {
 };
 
 const SpaceCard = props => {
-  const { classes } = props;
+  const { classes, space } = props;
+
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -39,21 +41,20 @@ const SpaceCard = props => {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            Lizard
+            {space.name ? space.name : "Coworking Space"}
           </Typography>
+          <Divider light />
           <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {space.international_phone_number
+              ? space.international_phone_number
+              : null}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <IconButton aria-label="Add to favorites">
-          <FavoriteIcon color="error"/>
+          <FavoriteIcon color="error" />
         </IconButton>
-        <Button size="small" color="primary">
-          Share
-        </Button>
         <Button size="small" color="primary">
           View Details
         </Button>

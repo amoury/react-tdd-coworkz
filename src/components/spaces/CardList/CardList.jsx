@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 
 import SpaceCard from '../SpaceCard';
+import Loader from '../../layout/Loader/Loader';
 
 
 
@@ -11,20 +12,22 @@ const styles = {
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "flex-start"
+    justifyContent: "center",
+    alignItems: "flex-start"
   }
 };
 
 const CardList = (props) => {
-  const { classes } = props;
+  const { classes, spaces } = props;
+  if (spaces.length <= 0) return <div><Loader /></div>;
+
+  const renderSpaceCards = spaces.map( space => (
+    <SpaceCard key={space.id} space={space}/>
+  ))
 
   return (
     <div className={classes.root}>
-      <SpaceCard/>
-      <SpaceCard/>
-      <SpaceCard/>
-      <SpaceCard/>
-      <SpaceCard/>
+      { renderSpaceCards }
     </div>
   )
 }
