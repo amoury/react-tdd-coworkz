@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid';
 
 import Navigation from '../../components/layout/Navigation';
 import Jumbotron from '../../components/layout/Jumbotron/Jumbotron';
+import SingleSpaceDetails from '../../components/spaces/SingleSpace/SingleSpaceDetails';
+import SingleSpaceLocation from '../../components/spaces/SingleSpace/SingleSpaceLocation';
 
 class SingleSpacePage extends Component {
   render () {
@@ -11,12 +13,9 @@ class SingleSpacePage extends Component {
         <Jumbotron />
 
         <Grid container spacing={24}>
-          <Grid item md={8} sm={12}>
-            Left Column
-          </Grid>
-          <Grid item md={4} sm={12}>
-            Right Column
-          </Grid>
+          <SingleSpaceDetails />
+          
+          <SingleSpaceLocation/>
         </Grid>
         
       </div>;
