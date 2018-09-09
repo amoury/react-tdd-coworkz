@@ -1,7 +1,16 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import PropTypes from 'prop-types';
+
+import createRouterContext from 'react-router-test-context';
+
 
 import CardList from './CardList';
+
+const context = createRouterContext();
+const childContextTypes = {
+  router: PropTypes.object.isRequired
+};
 
 
 describe("CardList", () => {
@@ -9,7 +18,7 @@ describe("CardList", () => {
   let mountedCardList; 
 
   beforeEach(() => {
-    mountedCardList = mount(<CardList {...props} />)
+    mountedCardList = mount(<CardList {...props} />, { context, childContextTypes })
   })
 
 

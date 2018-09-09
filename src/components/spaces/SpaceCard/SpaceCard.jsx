@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import {
   withStyles,
@@ -25,10 +26,14 @@ const styles = {
   },
   media: {
     height: 140
+  },
+  link: {
+    textDecoration: 'none',
+    color: "inherit"
   }
 };
 
-const SpaceCard = props => {
+export const SpaceCard = props => {
   const { classes, space } = props;
 
   return (
@@ -45,9 +50,7 @@ const SpaceCard = props => {
           </Typography>
           <Divider light />
           <Typography component="p">
-            {space
-              ? space.international_phone_number
-              : null}
+            {space ? space.international_phone_number : null}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -55,8 +58,13 @@ const SpaceCard = props => {
         <IconButton aria-label="Add to favorites">
           <FavoriteIcon color="error" />
         </IconButton>
-        <Button size="small" color="primary">
-          View Details
+
+        <Button
+          variant="outlined"
+          color="primary"
+          className={classes.button}
+        >
+          <Link to={`/spaces/${ space ? space.id : 'not-found'}`} className={classes.link}> View Details </Link>
         </Button>
       </CardActions>
     </Card>
@@ -64,7 +72,7 @@ const SpaceCard = props => {
 };
 
 SpaceCard.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object
 };
 
 export default withStyles(styles)(SpaceCard);
