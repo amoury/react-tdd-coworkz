@@ -11,8 +11,7 @@ const styles = {
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center",
-    alignItems: "flex-start"
+    justifyContent: "center"
   }
 };
 

@@ -22,8 +22,8 @@ class MegaMap extends Component {
     const { spaces } = this.props;
     
     const renderLocations = spaces.map( space => {
-      if(space.geometry) {
-        const { lat, lng } = space.geometry.location;
+      if(space.location) {
+        const { lat, lng } = space.location.coordinates;
         return <LocationMarker key={space.id} lat={lat} lng={lng} name={space.name} />;
       }
     })

@@ -5,20 +5,24 @@ import { CSSTransition } from "react-transition-group";
 
 import Navigation from "../../components/layout/Navigation";
 import CardList from "../../components/spaces/CardList";
-import places from "../../data";
 import "./HomePage.css";
 import MegaMap from "../../components/spaces/MegaMap/MegaMap";
 
 class HomePage extends Component {
   state = {
     showMap: false,
-    spaces: places
+    spaces: []
   };
 
   componentDidMount = async () => {
     try {
       const locationData = await axios.get("http://ip-api.com/json");
       this.handleUserLocation(locationData);
+      const spacesData = await axios.get("https://react-zen-space.firebaseio.com/spaces.json");
+      this.setState({ spaces: spacesData.data });
+      const imagesData = await axios.get("https://firebasestorage.googleapis.com/v0/b/react-zen-space.appspot.com/o/Campus-03.jpeg?alt=media&token=8bbc04b3-a153-4dd5-a0a8-79323ff4d906");
+      console.log(imagesData);
+
     } catch (error) {
       console.error(error.message);
     }
