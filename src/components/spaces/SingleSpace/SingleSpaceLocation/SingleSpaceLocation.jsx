@@ -3,7 +3,7 @@ import { Grid, Paper } from '@material-ui/core';
 import GoogleMapReact from "google-map-react";
 import LocationMarker from '../../LocationMarker';
 
-const SingleSpaceLocation = () => {
+const SingleSpaceLocation = ({ coordinates, name}) => {
   return (
     <Grid item md={4} sm={12}>
       <Paper style={{ minHeight: "250px", width: "100%", marginTop: "20px" }}>
@@ -12,10 +12,10 @@ const SingleSpaceLocation = () => {
             bootstrapURLKeys={{
               key: "AIzaSyBH8UsljlMRkbUNYkY1j4iOOem07wv9rbQ"
             }}
-            center={{ lat: 25.1555, lng: 55.3240 }}
+            center={{ lat: coordinates.lat, lng: coordinates.lng }}
             defaultZoom={11}
           >
-            <LocationMarker name="Ansar" lat={25.1555} lng={55.3235} />
+            <LocationMarker name={name} lat={coordinates.lat} lng={coordinates.lng} />
           </GoogleMapReact>
         </div>
       </Paper>

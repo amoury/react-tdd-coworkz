@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import { Chip, Avatar } from "@material-ui/core";
 import { CheckCircle } from "@material-ui/icons";
 
-import { header2 } from '../../../../variables';
+import { header2 } from "../../../../variables";
 
 const styles = {
   section: {
@@ -14,22 +14,35 @@ const styles = {
   chip: {
     margin: "5px"
   }
-}
+};
 
-const SingleSpaceAmenties = () => {
-  return <section style={styles.section}>
+const SingleSpaceAmenties = ({ amenities }) => {
+  const renderAmenities = amenities.map(amenity => {
+    return <Chip 
+            key={amenity} 
+            style={styles.chip} 
+            color="primary" 
+            avatar={
+              <Avatar>
+                <CheckCircle />
+              </Avatar>
+            }
+            variant="outlined"
+            label={amenity}
+            />
+
+  })
+  return (
+    <section style={styles.section}>
       <h2 style={header2}>Amenities</h2>
       <hr />
 
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        <Chip style={ styles.chip } color="primary" avatar={<Avatar><CheckCircle /></Avatar>} variant="outlined" label="High Speed Wifi"/>
-        <Chip style={ styles.chip } color="primary" avatar={<Avatar><CheckCircle /></Avatar>} variant="outlined" label="High Speed Wifi"/>
-        <Chip style={ styles.chip } color="primary" avatar={<Avatar><CheckCircle /></Avatar>} variant="outlined" label="High Speed Wifi"/>
-        <Chip style={ styles.chip } color="primary" avatar={<Avatar><CheckCircle /></Avatar>} variant="outlined" label="High Speed Wifi"/>
-        <Chip style={ styles.chip } color="primary" avatar={<Avatar><CheckCircle /></Avatar>} variant="outlined" label="High Speed Wifi"/>
-        
-      </div>
-    </section>;
-}
+        { renderAmenities }
 
-export default SingleSpaceAmenties
+      </div>
+    </section>
+  );
+};
+
+export default SingleSpaceAmenties;

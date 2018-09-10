@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 import HomePage from '../../pages/HomePage';
 import SingleSpacePage from '../../pages/SingleSpacePage';
+import { fetchSpacesAsync } from '../../actions/spaceActions';
 
 class App extends Component {
+
+  componentDidMount = () => {
+    this.props.fetchSpacesAsync();
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -20,4 +27,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, {fetchSpacesAsync})(App);

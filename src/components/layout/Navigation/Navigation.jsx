@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 import { Typography, Toolbar, Switch, IconButton, Tooltip, AppBar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -18,6 +19,11 @@ const menuButtonStyle = {
   marginLeft: -12,
   marginRight: 20
 };
+
+const navLinkStyle = {
+  textDecoration: "none",
+  color: "inherit"
+}
 
 
 class Navigation extends Component {
@@ -44,7 +50,7 @@ class Navigation extends Component {
               <MenuIcon/>
             </IconButton>
             <Typography variant="title" color="inherit" style={typographyStyle}>
-              Home
+              <NavLink to="/" style={navLinkStyle}>Home</NavLink>
             </Typography>
             
             <Tooltip title="Show Map" placement="left">

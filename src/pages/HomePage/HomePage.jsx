@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid } from "@material-ui/core";
+import { connect } from 'react-redux';
 import axios from "axios";
 import { CSSTransition } from "react-transition-group";
 
@@ -18,10 +19,6 @@ class HomePage extends Component {
     try {
       const locationData = await axios.get("http://ip-api.com/json");
       this.handleUserLocation(locationData);
-      const spacesData = await axios.get("https://react-zen-space.firebaseio.com/spaces.json");
-      this.setState({ spaces: spacesData.data });
-      const imagesData = await axios.get("https://firebasestorage.googleapis.com/v0/b/react-zen-space.appspot.com/o/Campus-03.jpeg?alt=media&token=8bbc04b3-a153-4dd5-a0a8-79323ff4d906");
-      console.log(imagesData);
 
     } catch (error) {
       console.error(error.message);
@@ -47,7 +44,7 @@ class HomePage extends Component {
         <Navigation toggleMap={this.handleMap} />
         <Grid container spacing={24}>
           <Grid item xs={12} md={this.state.showMap ? 8 : 12}>
-            <CardList spaces={this.state.spaces} />
+            <CardList spaces={this.props.spaces} />
           </Grid>
 
           <CSSTransition
@@ -59,7 +56,7 @@ class HomePage extends Component {
             <Grid item xs={12} md={4} className="mega-map">
               <MegaMap
                 userLocation={this.state.userLocation}
-                spaces={this.state.spaces}
+                spaces={this.props.spaces}
               />
             </Grid>
           </CSSTransition>
@@ -69,4 +66,8 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => ({
+  spaces: state.spaces
+})
+
+export default connect(mapStateToProps)(HomePage);
