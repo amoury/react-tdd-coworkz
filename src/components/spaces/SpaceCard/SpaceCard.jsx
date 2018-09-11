@@ -60,7 +60,7 @@ export const SpaceCard = props => {
       <CardActionArea style={{ width: "100%"}}>
         <CardMedia
           className={classes.media}
-          image="https://source.unsplash.com/random/400x300"
+          image={space && space.mainImage ? space.mainImage.headerURL : null }
           title="Contemplative Reptile"
         />
         <CardContent>

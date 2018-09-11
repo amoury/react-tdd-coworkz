@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import HomePage from '../../pages/HomePage';
 import SingleSpacePage from '../../pages/SingleSpacePage';
 import { fetchSpacesAsync } from '../../actions/spaceActions';
+// import { createUserAsync, signInAsync } from '../../actions/authActions';
+import { showModal, hideModal } from '../../actions/modalActions';
 
 class App extends Component {
 
@@ -27,4 +29,12 @@ class App extends Component {
   }
 }
 
-export default connect(null, {fetchSpacesAsync})(App);
+const mapDispatchToProps = dispatch => ({
+  hideModal: () => dispatch(hideModal()),
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }))
+  },
+  fetchSpacesAsync: () => dispatch(fetchSpacesAsync())
+})
+
+export default connect(null, mapDispatchToProps)(App);

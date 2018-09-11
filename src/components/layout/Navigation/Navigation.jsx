@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { Typography, Toolbar, Switch, IconButton, Tooltip, AppBar } from '@material-ui/core';
+import { Typography, Toolbar, Switch, IconButton, Tooltip, AppBar, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
@@ -39,6 +40,7 @@ class Navigation extends Component {
     this.setState({ switchOn: !this.state.switchOn });
     this.props.toggleMap();
   }
+  
 
   render () {
     
@@ -56,7 +58,16 @@ class Navigation extends Component {
             <Tooltip title="Show Map" placement="left">
               <Switch checked={this.state.switchOn} value="switchOn" onChange={this.handleSwitch}/>
             </Tooltip>
-            <AccountCircle />
+
+            {
+              !this.props.auth ? 
+              <Button variant="contained" color="secondary">
+                Sign In
+              </Button> :
+              <AccountCircle />
+
+            }
+
           </Toolbar>
         </AppBar>
       </NavigationWrapper>
@@ -64,8 +75,9 @@ class Navigation extends Component {
   }
 }
 
-// Navigation.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
+const mapStateToProps = state => ({
+  auth: state.auth
+})
 
-export default Navigation;
+
+export default connect(mapStateToProps)(Navigation);
